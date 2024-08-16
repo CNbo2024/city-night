@@ -1,0 +1,113 @@
+body {
+    direction: rtl;
+}
+.sv_user_login .dropdown-menu {
+    right: -100px;
+    left:unset !important;
+}
+.header_area .navbar .nav .nav-item {
+    margin-left: 3.5rem;margin-right: 0 !important;
+}
+.sv_user_login button img
+{
+    margin-left:0 !important;
+}
+.owl-carousel
+{
+    direction:ltr;
+}
+#properties_show .text, .sv_copyright, .rtl_text_right, .property-title, #booking-price #daterange-btn .col-6, .db-content h2, .db-content h5, .db-content div,
+.text-left, sidebar .list-wrap .list .info, .sv_usermenu, #listing_bes .form-group, #list_des .col-md-12, #listing_det .col-md-12, #lis_location .col-md-6, #amenities_id .col-lg-6, #amenities_id p,
+#amenities_id h4, #img_form .col-md-6, #img_form h4, #lis_pricing h4, #lis_pricing .form-group, #lis_pricing .col-md-12, #booking_id{
+    text-align: right !important;
+}
+.sv_footer_currency, .text-right
+{
+     text-align: left !important;
+}
+#exampleModalCenter .pl-4, .px-4 {
+    padding-right: 4rem !important;
+}
+.ml-25
+{
+    margin-right:35px !important;
+}
+.pull-right {
+    float: left !important;
+}
+div#listMargin {
+    margin-left: 3rem;
+    text-align: right;
+}
+div#sideDiv
+{
+    padding-left: 3rem;
+}
+.toggleSwitch a{right:0 !important;}
+.mybooking .badge, .svtrips .badge{left:0;right:unset !important;}
+#site-content {
+    text-align: right;
+}
+.svdashboard .svicon {
+    text-align: center !important;
+}
+.left_point{float:right !important;}
+#profile_update label, #profile_update .form-control {
+    text-align: right;
+    display: block;
+}
+#profile_update #phone {
+    padding-right: 60px !important;
+}
+.intl-tel-input.allow-dropdown .flag-container, .intl-tel-input.separate-dial-code .flag-container {
+    right: 0 !important;
+}
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 .selected-flag {
+    background: transparent;
+}
+div.dataTables_length select {
+    padding-right: 15px;
+}
+select {
+    padding-right: 30px !important;
+}
+#dtpc_form label, #front-search-form label, #front-search-form1 label {
+    text-align: right;
+    display: block;
+}
+.join_banner_txt
+{
+    text-align:right !important;
+}
+.send-btn
+{
+    margin:0 !important;
+}
+.sv_total_val {
+    flex: 100%;
+    max-width: 100%;padding:0;
+}
+.sv_total_val .text-right {
+    width: 23%;
+}
+@media (max-width: 767px) 
+{
+    .mob-back-btn
+    {
+        right:10px;
+    }
+    .mobile-side li{text-align:right;}
+    .mobile-side a{padding:0 20px 0 20px !important;}
+    #left_modal .close{margin:0;}
+}
+#login_form label {
+    text-align: right;
+    display: block;
+}
+.exp_location {
+    border-right: 0 !important;
+}
+.exp_dates {
+    border-left: 1px solid #ddd;border-right: 1px solid #ddd;
+}
+
