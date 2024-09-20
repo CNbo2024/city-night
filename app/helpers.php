@@ -1,16 +1,62 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Settings;
 use App\Models\PayoutSetting;
 use App\Models\Properties;
 use App\Models\Change;
 use App\Models\User;
+use App\Models\UserDetails;
 use App\Models\Currency;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Session;
 use App\Http\Helpers\Common;
 use App\Http\Helpers\Random;
 use Twilio\Http\CurlClient;
+
+function userHasAcceptedCocuments()
+{
+    $user_id = auth()->user()->id;
+
+    $db = DB::table('sv_doc_verification')->where('user_id', $user_id)
+        ->where('status', 'accept')
+        ->get();
+
+    if ($db->count()) {
+        return true;
+    }
+
+    return false;
+}
+
+function fullUserProfile() {
+    $user_id = auth()->user()->id;
+
+    $user = User::find($user_id);
+
+    $live = UserDetails::where('user_id', $user_id)
+        ->where('field', 'live')
+        ->first();
+
+    $live = $live->value ?? '';
+
+    if (
+        $user->first_name &&
+        $user->last_name &&
+        $user->email &&
+        $user->phone &&
+        $user->ci &&
+        $user->address &&
+        $user->city &&
+        $user->state &&
+        $user->country &&
+        $live
+    ) {
+        return true;
+    }
+
+    return false;
+}
 
 function showIdentityDeclinedAlert()
 {

@@ -58,9 +58,9 @@
                                         
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="user_last_name">{{trans('messages.experience.display_name')}} <span class="text-danger">*</span></label>
+                                                <label for="user_last_name">{{trans('messages.experience.display_name')}}</label>
                                                 <input class='form-control  text-16' type='text' name='display_name' value="{{$profile->display_name}}" id='display_name' size='30'>
-                                                    @if ($errors->has('display_name')) <p class="error-tag">{{ $errors->first('display_name') }}</p> @endif
+                                                    
                                             </div>
                                         </div>
 
@@ -88,8 +88,9 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="address">{{ __('messages.ci') }}</label>
+                                                <label for="address">{{ __('messages.ci') }} <span class="text-danger">*</span></label>
                                                 <input type="text" name="ci" class="form-control" value="{{$profile->ci}}">
+                                                @if ($errors->has('ci')) <p class="error-tag">{{ $errors->first('ci') }}</p> @endif
                                             </div>
                                         </div>
 
@@ -110,28 +111,31 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="address">{{ __('messages.address') }}</label>
+                                                <label for="address">{{ __('messages.address') }} <span class="text-danger">*</span></label>
                                                 <input type="text" name="address" class="form-control" value="{{$profile->address}}">
+                                                @if ($errors->has('address')) <p class="error-tag">{{ $errors->first('address') }}</p> @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="city">{{ __('messages.city') }}</label>
+                                                <label for="city">{{ __('messages.city') }} <span class="text-danger">*</span></label>
                                                 <input type="text" name="city" class="form-control" value="{{$profile->city}}">
+                                                @if ($errors->has('city')) <p class="error-tag">{{ $errors->first('city') }}</p> @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="state">{{ __('messages.state') }}</label>
+                                                <label for="state">{{ __('messages.state') }} <span class="text-danger">*</span></label>
                                                 <input type="text" name="state" class="form-control" value="{{$profile->state}}">
+                                                @if ($errors->has('state')) <p class="error-tag">{{ $errors->first('state') }}</p> @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="country">{{ __('messages.country') }}</label>
+                                                <label for="country">{{ __('messages.country') }} <span class="text-danger">*</span></label>
 
                                                 <select name="country" class="form-control">
                                                     <option value=""></option>
@@ -140,14 +144,17 @@
                                                         <option {{ $country->name == $profile->country ? 'selected' : '' }} value="{{ $country->name }}">{{ $country->name }}</option>
                                                     @endforeach
                                                 </select>
+
+                                                @if ($errors->has('country')) <p class="error-tag">{{ $errors->first('country') }}</p> @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
-                                                <label for="user_live">   {{trans('messages.users_profile.where_live')}}  
+                                                <label for="user_live">   {{trans('messages.users_profile.where_live')}}  <span class="text-danger">*</span>
                                                 </label>
                                                 <input class='form-control  text-16' type='text' name='details[live]' value="{{(isset($details['live']) && !empty($details['live'])) ? $details['live'] : '' }}" id='live' size='30' placeholder='e.g. Paris, FR / Brooklyn, NY / Chicago, IL'>
+                                                @if ($errors->has('live')) <p class="error-tag">{{ $errors->first('live') }}</p> @endif
                                             </div>
                                         </div>
 

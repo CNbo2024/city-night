@@ -26,8 +26,7 @@ class LinkserController extends Controller
         $this->hmac_sha256 = 'sha256';
         $this->secret_ley = '8f249d5ae2b244c1973a8f8569cc0260790be9d7d9f74971b32d3d9b341d13c6bbe5a1527e834aabbbfac8a8194d4f08cae53cfd4dc246bba3d81eafdc62601f750c814169524349819db6d24cce24c7c034b349262c499c8304420a1b9951a38cf550c170ca4e9d9f7e0d7fd35995225d276b1d2b834c7fb2c4a82330933f6c';
 
-        $expiry_date = explode('-', $request->card_expiration_date);
-        $expiry_date = $expiry_date[1] . '-' . $expiry_date[0];
+        $expiry_date = $request->card_expiration_month . '-' . $request->card_expiration_year;
 
         $params['access_key'] = 'd9037799fc8832e7978e6fff23d6fa6c';
         $params['profile_id'] = '21E9B4C6-8A25-4716-BED4-F655276C0860';

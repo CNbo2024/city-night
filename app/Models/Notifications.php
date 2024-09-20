@@ -24,6 +24,8 @@ class Notifications extends Model
 {
     protected $table = 'notifications';
 
+    protected $fillable = ['user_id', 'message', 'status', 'redirect', 'admin'];
+
     public function users()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');

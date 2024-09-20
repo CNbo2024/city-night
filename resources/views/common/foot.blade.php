@@ -412,6 +412,39 @@
 
 	</script>
 	<?php } ?>
+	
+	@if(auth()->user())
+		<script>
+			@php
+				$notifications = App\Models\Notifications::where('user_id', auth()->user()->id)
+					->where('status', 'unread')
+					->where('admin', '0')
+					->get();
+			@endphp
+
+			$(document).ready(function () {
+				@foreach($notifications as $notification)
+					Notification.requestPermission().then(permission => {
+						if (permission === 'granted') {
+							notification{{ $notification->id }}  = new Notification('{{ $notification->message }}', {
+								body: '',
+								icon: '{{ $favicon }}'
+							});
+
+							notification{{ $notification->id }} .onclick = (event) => {
+								window.location.href = '{{ $notification->redirect }}';
+							}
+						}
+					});
+				@endforeach
+			});
+
+			@php
+				App\Models\Notifications::where('user_id', auth()->user()->id)
+					->update(['status' => 'read']);
+			@endphp
+		</script>
+	@endif
 		
 		<!-- Needed Js from Old Version End -->
 		@stack('scripts')

@@ -64,7 +64,15 @@ class PaymentController extends Controller
 
     public function index(Request $request)
     {
-        //print_r($request->all());exit;
+        if (! fullUserProfile()) {
+            return redirect('/users/profile')->with('message', 'Por favor completa toda tu información para realizar reservas y/o publicar anuncios.');
+        }
+
+        if (! userHasAcceptedCocuments()) {
+            return redirect('/documentVerification')->with('message', 'Sube tu documento de identidad');
+        }
+
+
         $special_offer_id = '';
 
         $data['paypal_status'] = Settings::where('name', 'paypal_status')

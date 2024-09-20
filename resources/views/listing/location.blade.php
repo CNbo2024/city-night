@@ -72,12 +72,6 @@
 										<input type="text" name="state" id="state" value="{{ $result->property_address->state  }}" class="form-control text-16 mt-2">
 										<span class="text-danger">{{ $errors->first('state') }}</span>
 									</div>
-
-									<div class="col-md-6 mt-4 pl-5 pr-5">
-										<label>{{trans('messages.listing_location.zip_postal_code')}}</label>
-										<input type="text" name="postal_code" id="postal_code" value="{{ $result->property_address->postal_code }}" class="form-control text-16 mt-2">
-										<span class="text-danger">{{ $errors->first('postal_code') }}</span>
-									</div>
 								</div>
 							</div>
 							<div class="col-md-12 mt-5">
@@ -106,6 +100,10 @@
 		</div>
 	</div>
 </div>
+
+<input type="hidden" id="latitudeV">
+<input type="hidden" id="longitudeV">
+
 @stop
 
 @push('scripts')
@@ -113,6 +111,61 @@
 	<script type="text/javascript" src="{{ url('public/js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url('public/js/locationpicker.jquery.min.js') }}"></script>
 	<script type="text/javascript">
+		$(document).ready(function () {
+			if (navigator.geolocation) {
+			  navigator.geolocation.getCurrentPosition(function(position) {
+			    /*$('#latitudeV').val(position.coords.latitude);
+			    $('#longitudeV').val(position.coords.longitude);
+			    console.log(position.coords.latitude, position.coords.longitude);*/
+
+			    $('#map_view').locationpicker({
+					location: {
+						/*latitude: {{$result->property_address->latitude != '0'? $result->property_address->latitude:-17.7863 }},
+						longitude: {{$result->property_address->longitude != '0'? $result->property_address->longitude:-63.1812 }}*/
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude
+					},
+					radius: 0,
+					addressFormat: "",
+					inputBinding: {
+						latitudeInput: $('#latitude'),
+						longitudeInput: $('#longitude'),
+						locationNameInput: $('#address_line_1')
+					},
+					enableAutocomplete: true,
+					onchanged: function (currentLocation, radius, isMarkerDropped) {
+						var addressComponents = $(this).locationpicker('map').location.addressComponents;
+						updateControls(addressComponents);
+					},
+					oninitialized: function (component) {
+						var cb = function (event) {
+				            $('#map_view').locationpicker('location', {
+				                latitude: event.latLng.lat(),
+				                longitude: event.latLng.lng()
+				            });
+
+				            var addressComponents = $(component).locationpicker('map').location.addressComponents;
+							updateControls(addressComponents);
+				        };
+				        $('#map_view').locationpicker('subscribe', {
+				            event: 'click',
+				            callback: cb
+				        });
+
+						var addressComponents = $(component).locationpicker('map').location.addressComponents;
+						updateControls(addressComponents);
+					}
+				});	
+			  });
+
+
+			} else {
+			  alert("Geolocation is not supported by this browser.");
+			}
+
+
+		})
+
 		function updateControls(addressComponents) {
 			$('#street_number').val(addressComponents.streetNumber);
 			$('#route').val(addressComponents.streetName);
@@ -123,43 +176,6 @@
 			$('#postal_code').val(addressComponents.postalCode);
 			$('#country').val(addressComponents.country);
 		}
-
-		$('#map_view').locationpicker({
-			location: {
-				latitude: {{$result->property_address->latitude != '0'? $result->property_address->latitude:-17.7863 }},
-				longitude: {{$result->property_address->longitude != '0'? $result->property_address->longitude:-63.1812 }}
-			},
-			radius: 0,
-			addressFormat: "",
-			inputBinding: {
-				latitudeInput: $('#latitude'),
-				longitudeInput: $('#longitude'),
-				locationNameInput: $('#address_line_1')
-			},
-			enableAutocomplete: true,
-			onchanged: function (currentLocation, radius, isMarkerDropped) {
-				var addressComponents = $(this).locationpicker('map').location.addressComponents;
-				updateControls(addressComponents);
-			},
-			oninitialized: function (component) {
-				var cb = function (event) {
-		            $('#map_view').locationpicker('location', {
-		                latitude: event.latLng.lat(),
-		                longitude: event.latLng.lng()
-		            });
-
-		            var addressComponents = $(component).locationpicker('map').location.addressComponents;
-					updateControls(addressComponents);
-		        };
-		        $('#map_view').locationpicker('subscribe', {
-		            event: 'click',
-		            callback: cb
-		        });
-
-				var addressComponents = $(component).locationpicker('map').location.addressComponents;
-				updateControls(addressComponents);
-			}
-		});
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function () {

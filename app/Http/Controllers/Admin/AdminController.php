@@ -331,7 +331,7 @@ class AdminController extends Controller
                 }
                 
                 $this->helper->one_time_message('success', 'Updated Successfully');
-                return redirect('admin/profile');
+                return redirect('/documentVerification');
             }
         }
     }

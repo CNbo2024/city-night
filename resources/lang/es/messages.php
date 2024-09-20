@@ -44,7 +44,7 @@ return [
     'other_info' => 'Otras informaciones',
     'cancellation_policy' => 'Política de cancelación',
     'city' => 'Ciudad',
-    'state' => 'Estado',
+    'state' => 'Departamento',
     'support' => 'Soporte',
     'get_assistance_at_all_times' => 'Obten asistencia en todo momento',
     'country' => 'País',
@@ -280,7 +280,7 @@ return [
         'other'           => 'Otro',
         'birth_date'      => 'Fecha de Nacimiento',
         'email_address'   => 'Dirección de Correo Electrónico',
-        'where_live'      => 'Lugar de Residencia',
+        'where_live'      => 'País de Residencia',
         'describe'        => 'Descripción Personal',
         'save'            => 'Guardar',
         'phone'           => 'Teléfono',
@@ -321,7 +321,7 @@ return [
         'doc_verification' => 'Verificación de documentos',
         'doc_text' => 'Por favor, carga tus documentos para la verificación de identidad. Ejemplo: Pasaporte, Licencia de conducir',
         'click_to_select_img' => 'Haz clic para seleccionar una imagen',
-        'img_type' => 'Tipo de imagen: Jpeg, Jpg, Png, Jpe, Txt, Doc, Docx, Pdf',
+        'img_type' => 'Tipo de imagen: Jpeg, Jpg, Png, Jpe, Pdf',
         'disapprove_text' => 'Motivo de desaprobación',
         'document' => 'Documento',
         'document_confirmed' => 'Documento confirmado',
@@ -1174,6 +1174,7 @@ return [
         'upcoming'     =>'Próximo',  # Upcoming
         'pending'      =>'Pendiente',  # Pending
         'expired'      =>'Expirado',  # Expired
+        'cancelled'      =>'Cancelado',  # Cancelled
       ],
 
 

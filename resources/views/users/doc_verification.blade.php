@@ -50,6 +50,14 @@
 
 										<hr class="mb-4">
 
+										@php
+											$db = DB::table('sv_doc_verification')
+												->where('user_id', auth()->user()->id)
+												->where('status', 'accept')
+												->get();
+										@endphp
+
+										@if(! $db->count())
 										<div class="dropzone margin-bottom-20" id="myId">
 											<div class="fallback">
 												<input id="files" accept="image/*" multiple="true" name="files[]" type="file">
@@ -60,9 +68,8 @@
 											 <h3>{{ trans('messages.sign_up.click_to_select_img') }}</h3>
 											<span class="note needsclick"><h3 class="margin-top-10">{{ trans('messages.sign_up.img_type') }}</h3></span>
 										  </div>
-					   
-
 										</div>
+										@endif
 										
 										@if(!$document->isEmpty())
 											<ul class="mt-4 mb-4 d-flex svdoc">
@@ -71,16 +78,19 @@
 													@if($document->type=="image/png" || $document->type=="image/jpeg")
 												    <a download href="{{ url('public/images/doc/') }}/{{ $document->doc }}" target="_blank">
 
-														<img width="150px" height="150px" class="border rounded-4" src="{{ url('public/images/doc/') }}/{{ $document->doc }} ">
+														<img width="150px" height="150px" @if($document->comments) style="border: 2px solid red" @endif @if($document->status == 'accept') style="border: 2px solid green" @endif class="rounded-4" src="{{ url('public/images/doc/') }}/{{ $document->doc }} ">
 												    </a>
 													@elseif($document->type!="image/png" || $document->type!="image/jpeg")
 														<p>
 														    <a download href="{{ url('public/images/doc/') }}/{{ $document->doc }}" target="_blank">
-														        <img class="border rounded-4" src="{{ url('public/images/dicon.png') }}" width="150px" height="150px">
+														        <img @if($document->status == 'accept') style="border: 2px solid green" @endif @if($document->comments) style="border: 2px solid red" @endif class="border rounded-4" src="{{ url('public/images/dicon.png') }}" width="150px" height="150px">
 														    </a>
 														 </p>
 													@endif
-		                                         <i class="fa fa-trash text-danger" id="closedid"  onclick="removethis(<?php echo $document->id;?>);" ></i>
+
+													@if($document->status != 'accept')
+														<i class="fa fa-trash text-danger" id="closedid"  onclick="removethis(<?php echo $document->id;?>);" ></i>
+													@endif
 
 												</li>
 										
@@ -88,8 +98,16 @@
 											@endforeach
 											</ul>
 										@endif
-	
-														
+
+										<div>
+											@if(! $db->count())
+											<div>Sube tu documento de identidad anverso y reverso (puedes seleccionar hasta 2 imágenes)</div>
+											@endif
+
+											@foreach(DB::table('sv_doc_verification')->whereNotNull('comments')->where('user_id', auth()->user()->id)->get() as $doc)
+												<li style="color: red">{{ $doc->comments }}</li>
+											@endforeach
+										</div>
 									
 									</div>
 								</div>
@@ -174,14 +192,17 @@
 	success: function(file,response) {
 
     $('#formUpload').append('<input id="' + response.success + '" type="hidden" name="gallery[]" value="' + response.success + '">')
-	console.log(response);
+	window.location.href = window.location.href;
     
    file.upload.filename = response.success;
    file.filename = response.success;
     if (file.previewElement) {
       return file.previewElement.classList.add("dz-success");
     }
-  },			
+  },		
+  error: function (error, error2) {
+  	console.log(error, error2);
+  },
  
  removedfile: function(file) {
 	 

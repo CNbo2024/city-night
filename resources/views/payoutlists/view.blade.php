@@ -172,11 +172,11 @@
 								</div>
 							</div>
 
-							<div class="col-md-12">
+							<div style="display: none" class="col-md-12">
 								<div class="form-group">
 									<label for="exampleInputPassword1" class="control-label">{{trans('messages.listing_price.currency')}}</label>
 									<select class="form-control text-14" name="currency_id" id="currency_id">
-										<option value="{{$default_currency->id}}">{{$default_currency->code}}</option>
+										<option value="33">BOB</option>
 									</select>
 								</div>
 							</div>

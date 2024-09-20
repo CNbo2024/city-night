@@ -453,7 +453,13 @@ function setValues() {
 	type = $('[name=cards]').find(':selected').attr('data-type');
 	cvc = $('[name=cards]').find(':selected').attr('data-cvc');
 
-	$('[name=card_expiration_date]').val(expiry);
+	month = expiry.split('-')[1];
+	year = expiry.split('-')[0];
+
+	console.log(month, year);
+
+	$('[name=card_expiration_year]').val(year);
+	$('[name=card_expiration_month]').val(month);
 	$('[name=card_number]').val(number);
 	$('[name=card_type]').val(type);
 	$('[name=card_cvn]').val(cvc);
@@ -532,7 +538,37 @@ $(document).ready(function() {
 
 					<div class="col-md-3">
 						<label for="card_expiration_date">{{ 'Vencimiento' }}</label>
-						<input type="text" class="form-control" name="card_expiration_date" placeholder="2027-01" required>
+
+						<div class="form-inline">
+							<select style="width: 50px" name="card_expiration_month" id="card_expiration_month" class="form-control">
+								<option value="01">1</option>
+								<option value="02">2</option>
+								<option value="03">3</option>
+								<option value="04">4</option>
+								<option value="05">5</option>
+								<option value="06">6</option>
+								<option value="07">7</option>
+								<option value="08">8</option>
+								<option value="09">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+							</select>
+
+							<select style="width: 75px" name="card_expiration_year" id="card_expiration_year" class="form-control ml-1">
+								<option value="2024">2024</option>
+								<option value="2025">2025</option>
+								<option value="2026">2026</option>
+								<option value="2027">2027</option>
+								<option value="2028">2028</option>
+								<option value="2029">2029</option>
+								<option value="2030">2030</option>
+								<option value="2031">2031</option>
+								<option value="2032">2032</option>
+								<option value="2034">2034</option>
+								<option value="2035">2035</option>
+							</select>
+						</div>
 					</div>
 
 					<div class="col-md-1">

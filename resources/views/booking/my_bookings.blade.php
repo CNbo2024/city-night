@@ -26,6 +26,7 @@
                                                     <option value="Pending" {{ $status == "Pending" ? ' selected="selected"' : '' }}>{{trans('messages.filter.pending')}}</option>
                                                     <option value="Completed" {{ $status == "Completed" ? ' selected="selected"' : '' }}>{{trans('messages.filter.completed')}}</option>
                                                     <option value="Expired" {{ $status == "Expired" ? ' selected="selected"' : '' }}>{{trans('messages.filter.expired')}}</option>
+                                                    <option value="Cancelled" {{ $status == "Cancelled" ? ' selected="selected"' : '' }}>{{trans('messages.filter.cancelled')}}</option>
                                                 </select>
                                             </form>
                                         </div>
@@ -248,7 +249,7 @@
         
         $(document).ready(function()
         {
-            document.getElementById('booking_select').size=6;
+            document.getElementById('booking_select').size=7;
         });
     </script>
 	

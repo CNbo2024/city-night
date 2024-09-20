@@ -434,7 +434,10 @@ class BookingController extends Controller
                 break;
             case 'Pending':
                 $params           = [['created_at', '>', Carbon::yesterday()], ['status', $request->status]];
-                break;     
+                break;
+            case 'Cancelled':
+                $params           = [['status', $request->status]];
+                break;
             default:
                 $params           = [];
                 break;

@@ -119,9 +119,6 @@ class PayoutController extends Controller
                 $payoutSetting->account_name        = $request->bank_account_holder_name;
                 $payoutSetting->account_number      = $request->bank_account_number;
                 $payoutSetting->bank_branch_name    = $request->branch_name;
-                $payoutSetting->bank_branch_city    = $request->branch_city;
-                $payoutSetting->swift_code          = $request->swift_code;
-                $payoutSetting->bank_branch_address = $request->branch_address;
                 $payoutSetting->bank_name           = $request->bank_name;
                 $payoutSetting->country             = $request->country;
                 $payoutSetting->save();

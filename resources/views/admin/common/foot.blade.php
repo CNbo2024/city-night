@@ -63,5 +63,38 @@ var APP_URL = "{{(url('/'))}}";
 <script type="text/javascript" src="{{ url('public/backend/js/daterangecustom.js')}}"></script>
 </body>
 
+@if(auth()->guard('admin')->user())
+  <script>
+    @php
+      $notifications = App\Models\Notifications::where('user_id', auth()->guard('admin')->user()->id)
+        ->where('status', 'unread')
+        ->where('admin', '1')
+        ->get();
+    @endphp
+
+    $(document).ready(function () {
+      @foreach($notifications as $notification)
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            notification{{ $notification->id }}  = new Notification('{{ $notification->message }}', {
+              body: '',
+              icon: '{{ $favicon }}'
+            });
+
+            notification{{ $notification->id }} .onclick = (event) => {
+              window.location.href = '{{ $notification->redirect }}';
+            }
+          }
+        });
+      @endforeach
+    });
+
+    @php
+      App\Models\Notifications::where('user_id', auth()->guard('admin')->user()->id)
+        ->update(['status' => 'read']);
+    @endphp
+  </script>
+@endif
+
 @stack('scripts')
 </html>

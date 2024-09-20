@@ -137,53 +137,6 @@
 										</div>
 										</li>
 									@endif
-
-									@if(Auth::user()->users_verification->facebook == 'no')
-										<li>
-										<h4 class="font-weight-700 text-16 mt-4">
-											{{ trans('messages.sign_up.facebook') }}
-										</h4>
-										<div class="row pl-4 pt-2">
-											<div class="col-md-9">
-											<p class="text-16">
-												{{ trans('messages.profile.facebook_verification') }}
-											</p>
-											</div>
-											<div class="col-md-3">
-												<div>
-													<a href="{{ url('facebookLoginVerification') }}">
-														<button type="button" class="btn btn-outline-primary pl-4 pr-4 pt-3 pb-3 text-16 text-weight-700 w-100">{{ trans('messages.profile.connect') }}</button>
-													</a>
-												</div>
-											</div>
-										</div>
-										</li>
-										
-										
-										
-									@endif
-									
-									@if(Auth::user()->users_verification->google == 'no')
-										<li>
-											<h4 class="font-weight-700 text-16 mt-4">
-												{{ trans('messages.sign_up.google') }}
-											</h4>
-											<div class="row pl-4 pt-2">
-												<div class="col-md-9">
-												<p class="description text-16">
-													{{ trans('messages.profile.google_verification', ['site_name'=>$site_name]) }}
-												</p>
-												</div>
-												<div class="col-md-3">
-													<div class="connect-button">
-														<a href="{{URL::to('googleLoginVerification')}}">
-															<button type="button" class="btn btn-outline-warning pl-4 pr-4 pt-3 pb-3 text-16 text-weight-700 w-100">{{ trans('messages.profile.connect') }}</button>
-														</a>
-													</div>
-												</div>
-											</div>
-										</li>
-									@endif
 									
 									@if(Auth::user()->users_verification->document == 'no')
 										<li>

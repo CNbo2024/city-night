@@ -30,10 +30,12 @@ use App\Models\{
     PasswordResets,
     Payment,
     Notification,
+    Notifications,
     Timezone,
     Reviews,
     Accounts,
     UsersVerification,
+    Admin,
     Properties,
     Payouts,
     Bookings,
@@ -130,7 +132,7 @@ class UserController extends Controller
             
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $this->helper->one_time_message('success', trans('messages.success.register_success'));
-                return redirect('/');
+                return redirect('/users/profile');
             } else {
                 $this->helper->one_time_message('danger', trans('messages.error.login_error'));
                 return redirect('login');
@@ -190,14 +192,15 @@ class UserController extends Controller
 
         if ($request->isMethod('post')) {
             $rules = array(
-                'first_name'      => 'required|max:255',
-                'last_name'       => 'required|max:255',
-                'email'           => 'required|max:255|email|unique:users,email,'.Auth::user()->id,
-                /* 'birthday_day'    => 'required',
-                'birthday_month'  => 'required',
-                'birthday_year'   => 'required', */
-                'phone'           => 'required',
-                'display_name'    => 'required',
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'email' => 'required|max:255|email|unique:users,email,'.Auth::user()->id,
+                'phone' => 'required',
+                'ci' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'country' => 'required',
             );
 
             $messages = array(
@@ -252,10 +255,12 @@ class UserController extends Controller
                 if ($new_email == 'yes') {
                     $email_controller->change_email_confirmation($user);
 
-                    $this->helper->one_time_message('success', trans('messages.success.email_cofirmation_success'));
+                    $this->helper->one_time_message('success', trans('Por favor sube tu documento de identidad'));
                 } else {
-                    $this->helper->one_time_message('success', trans('messages.profile.profile_updated'));
+                    $this->helper->one_time_message('success', trans('Por favor sube tu documento de identidad'));
                 }
+
+                return redirect('/documentVerification');
             }
         }
 
@@ -834,6 +839,16 @@ class UserController extends Controller
 		$created_at = date('Y-m-d H:i:s');
 		$data=array('user_id'=>Auth::user()->id,'type'=>$type,'doc'=>$profileImage,'created_at'=>$created_at);
 		DB::table('sv_doc_verification')->insert($data);
+
+        foreach (Admin::get() as $admin) {
+            Notifications::create([
+                'user_id' => $admin->id,
+                'message' => 'Nuevo documento pendiente de verificación',
+                'status' => 'unread',
+                'redirect' => '/admin/identify-verification',
+                'admin' => '1',
+            ]);            
+        }
 		
         return response()->json(['success'=>$profileImage]);	
 	}

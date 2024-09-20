@@ -162,6 +162,10 @@
 													<a data-rel="{{@$booking->id}}" href="#" class="booking_cancel btn-danger text-13 p-2 rounded-4">{{trans('messages.booking_my.cancel')}}</a>
 											  </li>
 											  @endif
+
+											  <li class="row-space-1">
+													<a data-rel="{{@$booking->id}}" href="#" class="booking_cancel btn-danger text-13 p-2 rounded-4">{{trans('messages.booking_my.cancel')}}</a>
+											  </li>
 										</ul>
 										
 										
@@ -289,7 +293,7 @@
         
         $(document).ready(function()
         {
-            document.getElementById('trip_select').size=6;
+            document.getElementById('trip_select').size=7;
         });
     </script>
 	

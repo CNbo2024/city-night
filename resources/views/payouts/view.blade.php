@@ -245,46 +245,16 @@
 							<p class="error-tag">{{ $errors->first('bank_account_number') }}</p> 
 							@endif
 						</div>
-					</div>
-
-					<div class="col-md-6" id="branch_c">
-						<div class="form-group">
-							<label for="exampleInputPassword1">{{trans('messages.account_preference.branch_city')}}<span class="text-danger">*</span></label>
-							<input type="text" class="form-control" name="branch_city" id="branch_city" value="">
-							@if ($errors->has('branch_city')) 
-							<p class="error-tag">{{ $errors->first('branch_city') }}</p> 
-							@endif
-						</div>
-					</div>
-
-					<div class="col-md-6" id="swift">
-						<div class="form-group">
-							<label for="exampleInputPassword1">{{trans('messages.account_preference.swift_code')}}<span class="text-danger">*</span></label>
-							<input type="text" class="form-control" name="swift_code" id="swift_code" value="">
-							@if ($errors->has('swift_code')) 
-							<p class="error-tag">{{ $errors->first('swift_code') }}</p> 
-							@endif
-						</div>
-					</div>
-
-					<div class="col-md-6" id="branch_ad">
-						<div class="form-group">
-							<label for="exampleInputPassword1">{{trans('messages.account_preference.branch_address')}} <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" name="branch_address" id="branch_address" value="">
-							@if ($errors->has('branch_address'))
-							<p class="error-tag">{{ $errors->first('branch_address') }}</p> 
-							@endif
-						</div>
-					</div>
-
-					
+					</div>					
 
 					<div class="col-md-6" id="country_id">
 						<div class="form-group">
 							<label for="exampleInputPassword1" class="control-label col-sm-3">{{trans('messages.payment.country')}}</label>
 							<select class="form-control" name="country" id="country">
 								@foreach($countries as $country)
-								<option value="{{$country->id}}">{{$country->name}}</option>
+									@if($country->name == 'Bolivia')
+										<option value="{{$country->id}}">{{$country->name}}</option>
+									@endif
 								@endforeach
 							</select>
 						</div>

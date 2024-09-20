@@ -31,6 +31,7 @@
 							<div class="container">
 								<ul class="nav nav-tabs mt-5 ml-3">
 									<li><a data-toggle="tab" href="#collapseen">En</a></li>
+									<li><a data-toggle="tab" class="active" href="#collapsees">Es</a></li>
 									  @foreach($languages_new as $key => $language)
 									  @php  if($language->short_name == 'en'){continue;} @endphp 
 									  
@@ -96,6 +97,68 @@
 										
 										</div>
 									</div>
+
+									<div id="collapsees" class="tab-pane fadein active">
+									<div class="box-body">
+										<input type="hidden" name="es[id]" value="{{$language->id}}">
+												
+										<div class="col-md-12 pb-4 p-0 rounded-3 mt-4">
+											<!--<div class="form-group col-md-12 pb-3 pt-3">
+												<h4 class="text-18 font-weight-700 pl-3 text-capitalize">{{trans('messages.listing_description.detail')}}</h4>
+											</div>-->
+												<div class="row mt-4">
+													<div class="col-md-12">
+														<label class="label-large">{{trans('messages.listing_description.about_place')}}</label>
+														<textarea class="form-control mt-2" placeholder="Ejemplo: Este apartamento moderno cuenta con una decoración elegante y todas las comodidades necesarias para una estancia cómoda. Ubicado en un vecindario tranquilo, es el lugar perfecto para relajarse después de un día explorando la ciudad." name="es[about_place1]" rows="4" placeholder="">@if(!empty($other_description->about_place)) {{ $other_description->about_place }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+														<label class="label-large">{{trans('messages.listing_description.great_place')}}</label>
+														<textarea placeholder="Ejemplo: El lugar es ideal para viajeros de negocios, parejas y familias. Su ubicación céntrica y el ambiente tranquilo lo hacen perfecto para trabajar o descansar." class="form-control mt-2" name="es[place_is_great_for1]" rows="4" placeholder="">@if(!empty($other_description->place_is_great_for)) {{ $other_description->place_is_great_for }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+														<label class="label-large">{{trans('messages.listing_description.guest_access')}}</label>
+														<textarea placeholder="Ejemplo: Los huéspedes tendrán acceso a todas las áreas del apartamento, incluyendo la cocina, el salón, y la terraza. También hay una piscina comunitaria y un gimnasio disponibles." class="form-control mt-2" name="es[guest_can_access1]" rows="4" placeholder="">@if(!empty($other_description->guest_can_access)) {{ $other_description->guest_can_access }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+														<label class="label-large">{{trans('messages.listing_description.guest_interaction')}}</label>
+														<textarea placeholder="Ejemplo: Me gusta dar espacio a mis huéspedes, pero estoy disponible para cualquier pregunta o ayuda que necesiten durante su estancia. Puedes contactarme por teléfono o mensaje de texto." class="form-control mt-2" name="es[interaction_guests1]" rows="4" placeholder="">@if(!empty($other_description->interaction_guests)) {{ $other_description->interaction_guests }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+													<label class="label-large">{{trans('messages.listing_description.thing_note')}}</label>
+													<textarea placeholder="Ejemplo: No se permiten fiestas ni eventos. Por favor, respeta a los vecinos y mantén el ruido al mínimo después de las 10 PM. No se permite fumar dentro del apartamento." class="form-control mt-2" name="es[other1]" rows="4" placeholder="">@if(!empty($other_description->other)) {{ $other_description->other }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+													<label class="label-large">{{trans('messages.listing_description.overview')}}</label>
+													<textarea placeholder="Ubicado en una calle tranquila, este apartamento es un refugio perfecto con fácil acceso a las principales atracciones de la ciudad. Con una decoración moderna y todas las comodidades, es ideal para una estancia cómoda y relajante." class="form-control mt-2" name="es[about_neighborhood1]" rows="4" placeholder="">@if(!empty($other_description->about_neighborhood)) {{ $other_description->about_neighborhood }} @endif</textarea>
+													</div>
+												</div>
+									
+												<div class="row mt-4">
+													<div class="col-md-12">
+													<label class="label-large">{{trans('messages.listing_description.getting_around')}}</label>
+													<textarea placeholder="La propiedad está cerca de varias líneas de autobuses y estaciones de metro. Además, hay opciones de alquiler de bicicletas y scooters en la zona, así como taxis y servicios de transporte por aplicación disponibles las 24 horas." class="form-control mt-2" name="es[get_around1]" rows="4" placeholder="">@if(!empty($other_description->get_around)) {{ $other_description->get_around }} @endif</textarea>
+													</div>
+												</div>
+										</div>
+													
+													
+									</div>
+								</div>
 								
 								 @foreach($languages_new as $key => $language)
 								  @php if($language->short_name == 'en'){continue;}  @endphp 

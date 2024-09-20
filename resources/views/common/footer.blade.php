@@ -19,33 +19,11 @@ if($currentPaths == 'new-home')
                 <div class="row">
                     <div class="col p-0">
                         <ul class="mt-1">
+                            @foreach(App\Models\StartingCities::get() as $city)
                             <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Santa Cruz de la Sierra&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Santa Cruz de la Sierra' }}</a>
+                                <a href="{{URL::to('/')}}/search?location={{ $city->name }}&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ $city->name }}</a>
                             </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=La Paz&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'La Paz' }}</a>
-                            </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Cochabamba&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Cochabamba' }}</a>
-                            </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Tarija&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Tarija' }}</a>
-                            </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Sucre&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Sucre' }}</a>
-                            </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Beni&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Beni' }}</a>
-                            </li>
-
-                            <li class="pt-3 text-14">
-                                <a href="{{URL::to('/')}}/search?location=Pando&checkin={{ date('d-m-Y') }}&checkout={{ date('d-m-Y') }}&guest=1">{{ 'Pando' }}</a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
