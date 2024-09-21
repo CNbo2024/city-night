@@ -180,7 +180,7 @@
 
 	$("div#myId").dropzone({
 	paramName: 'file',
-    acceptedFiles: ' .jpeg, .jpg, .png, .jpe, .txt, .doc, .docx, .pdf',
+    acceptedFiles: ' .jpeg, .jpg, .png, .jpe, .pdf',
 	url: baseUrl+'/create/dropzone-image-upload',
 	addRemoveLinks: true,
 			params: {

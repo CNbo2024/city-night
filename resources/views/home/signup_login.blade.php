@@ -20,6 +20,18 @@
                         <div><a class="act-active" href="{{URL::to('/')}}/signup">{{trans('messages.sign_up.sign_up')}}</a></div>
                     </div>
                     <div class="row mt-5 justify-content-center mb-5" >
+                    	<div class="col-7">
+                    		@if ($errors->any())
+							    <div class="alert alert-danger">
+							        <ul>
+							            @foreach ($errors->all() as $error)
+							                <li>{{ $error }}</li>
+							            @endforeach
+							        </ul>
+							    </div>
+							@endif
+                    	</div>
+                    	
                         <div class="col-lg-7 col-md-12">
                 			<form id="signup_form" name="signup_form" method="post" action="{{url('create')}}" class='signup-form login-form' accept-charset='UTF-8' onsubmit="return ageValidate();">    
 					            {{ csrf_field() }}

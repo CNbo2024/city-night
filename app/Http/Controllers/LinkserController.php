@@ -39,7 +39,7 @@ class LinkserController extends Controller
         $params['unsigned_field_names'] = 'card_type,card_number,card_expiry_date,card_cvn';
         $params['signed_date_time'] = gmdate("Y-m-d\TH:i:s\Z");
         $params['locale'] = 'en';
-        $params['transaction_type'] = 'authorization';
+        $params['transaction_type'] = 'sale';
         $params['reference_number'] = uniqid();
         $params['amount'] = $request->amount;
         $params['currency'] = 'BOB';

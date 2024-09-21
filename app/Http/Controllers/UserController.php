@@ -71,6 +71,7 @@ class UserController extends Controller
                 'last_name'       => 'required|max:255',
                 'email'           => 'required|max:255|email|unique:users',
                 'password'        => 'required|min:6',
+                'phone'           => 'unique:users',
                 'g-recaptcha-response' => 'required|captcha',
             );
         }
@@ -81,6 +82,7 @@ class UserController extends Controller
                 'last_name'       => 'required|max:255',
                 'email'           => 'required|max:255|email|unique:users',
                 'password'        => 'required|min:6',
+                'phone'           => 'unique:users',
             );
         }
 
@@ -111,7 +113,7 @@ class UserController extends Controller
             $user->password     =   bcrypt($request->password);
             $user->status       =   'Active';
             $formattedPhone        = str_replace('+' . $request->carrier_code, "", $request->formatted_phone);
-            $user->phone           = !empty($request->phone) ? preg_replace("/[\s-]+/", "", $formattedPhone) : NULL;
+            $user->phone           = !empty($request->phone) ? preg_replace("/[\s-]+/", "", $request->phone) : NULL;
             $user->default_country = isset($request->default_country) ? $request->default_country : NULL;
             $user->carrier_code    = isset($request->carrier_code) ? $request->carrier_code : NULL;
             $user->formatted_phone = isset($request->formatted_phone) ? $request->formatted_phone : NULL;
@@ -195,7 +197,7 @@ class UserController extends Controller
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
                 'email' => 'required|max:255|email|unique:users,email,'.Auth::user()->id,
-                'phone' => 'required',
+                'phone' => 'required|unique:users,phone,'.Auth::user()->id,
                 'ci' => 'required',
                 'address' => 'required',
                 'city' => 'required',
@@ -233,7 +235,7 @@ class UserController extends Controller
                 $user->state           = $request->state;
                 $user->ci              = $request->ci;
                 $user->country         = $request->country;
-                $formattedPhone        = str_replace('+' . $request->carrier_code, "", $request->formatted_phone);
+                $formattedPhone        = str_replace('+' . $request->carrier_code, "", $request->phone);
                 $user->phone           = !empty($request->phone) ? preg_replace("/[\s-]+/", "", $formattedPhone) : NULL;
                 $user->default_country = isset($request->default_country) ? $request->default_country : NULL;
                 $user->carrier_code    = isset($request->carrier_code) ? $request->carrier_code : NULL;

@@ -157,12 +157,6 @@
                                         ?>
 										
 										<ul class="unstyled list-unstyled">
-											  @if(@$booking->status != "Cancelled" && @$booking->status != "Declined" && @$booking->status != "Expired" && $now <  $booking_start)
-											  <li class="row-space-1">
-													<a data-rel="{{@$booking->id}}" href="#" class="booking_cancel btn-danger text-13 p-2 rounded-4">{{trans('messages.booking_my.cancel')}}</a>
-											  </li>
-											  @endif
-
 											  <li class="row-space-1">
 													<a data-rel="{{@$booking->id}}" href="#" class="booking_cancel btn-danger text-13 p-2 rounded-4">{{trans('messages.booking_my.cancel')}}</a>
 											  </li>
